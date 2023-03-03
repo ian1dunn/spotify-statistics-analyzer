@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+
+  <body>
+    <header>
+      <%- include('../partials/header'); %>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row justify-content-center text-center">
+        <div class="btn-group" id="ranges" role="group">
+          <a type="button" class="btn btn-secondary" href="/stats/short_term">Last Month</a>
+          <a type="button" class="btn btn-secondary" href="/stats/medium_term">Last 6 Months</a>
+          <a type="button" class="btn btn-secondary" href="/stats/long_term">All-Time</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h3>Tracks</h3>
+          <% for (var i=0; i < tracks.length; i++) { %>
+            <div class="card <%= i > 10 ? 'collapse" id="collapsable\"' : '' %>">
+              <div class="row">
+                <div class="col-sm-3 d-flex align-items-center">
+                  <img src="<%= tracks[i].coverUrl %>" class="mx-auto d-block img-fluid">
+                </div>
+                <div class="col-sm-9">
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      <b>
+                        <%= i + 1 + ' . ' %>
+                          <a href="<%= tracks[i].url %>">
+                            <%= tracks[i].name %>
+                          </a>
+                      </b>
+                      <%= tracks[i].explicit ? ' (Explicit)' : '' %>
+              </h5>
+              <% for (var j=0; j < tracks[i].artists.length; j++) { %>
+                <a class="link-secondary" href="<%= tracks[i].artists[j].url %>">
+                  <%= tracks[i].artists[j].name %>
+                </a>
+                <% } %>
+            </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+      </div>
+      <div class="col">
+        <h3>Artists</h3>
+        <% for (var i=0; i < artists.length; i++) { %>
+          <div class="card">
+            <div class="row">
+              <div class="col-sm-3 d-flex align-items-center">
+                <img src="<%= artists[i].coverUrl %>" class="mx-auto d-block img-fluid">
+              </div>
+              <div class="col-sm-9">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <b>
+                      <%= i + 1 + '. ' %>
+                        <a href="<%= artists[i].url %>">
+                          <%= artists[i].name %>
+                        </a>
+                    </b>
+                    (<%= artists[i].popularity %>%)
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
+      </div>
+      <div class="col">
+        <h3>Genres</h3>
+        <% for (var i=0; i < (genres.length> 50 ? 50 : genres.length); i++) { %>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <b>
+                  <%= i + 1 + '. ' %>
+                    <%= genres[i].genre %>
+                </b>
+                (<%= genres[i].percentage %>%)
+              </h5>
+            </div>
+          </div>
+          <% } %>
+      </div>
+      </div>
+      </div>
+
+      <footer>
+        <%- include('../partials/footer'); %>
+      </footer>
+  </body>
+
+</html>

@@ -1,0 +1,7 @@
+{
+    "client_id": "YOUR_CLIENT_ID_HERE",
+    "client_secret": "YOUR_SECRET_KEY_HERE",
+    "redirect_uri": "http://localhost:3000/callback",
+    "statekey": "spotify_auth_state",
+    "scope": "user-read-private user-read-email user-library-read playlist-read-collaborative playlist-read-private user-read-recently-played user-top-read user-follow-read"
+}
